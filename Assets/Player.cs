@@ -6,10 +6,12 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour {
 
     //reference in editor
+    [SerializeField] private PhysicsMaterial2D zeroFrictionMaterial;
     [SerializeField] private PhysicsMaterial2D afterDeathMaterial;
 
     //config
     [SerializeField] private float runningSpeedOnLadder = 1f;
+    [SerializeField] private float runningSpeedWithCrate = 1f;
     [SerializeField] private float defaultRunningSpeed = 1f;
     [SerializeField] private float climbingLadderSpeed = 1f;
     [SerializeField] private float jumpingStrenght = 1f;
@@ -20,7 +22,9 @@ public class Player : MonoBehaviour {
     private bool isActive = true;
     public bool IsActive { set { isActive = value; } }
     private float xAxisInput, yAxisInput;
-    bool isTouchingGround;
+    private bool isTouchingGround;
+    private GameObject crateToPull;
+    private bool isPullingCrate;
 
     //cached components 
     private Animator animator;
@@ -38,17 +42,19 @@ public class Player : MonoBehaviour {
 	
 	void Update ()
     {
-        isTouchingGround = feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        print(crateToPull);
+        isTouchingGround = IsPlayerTouching(feetCollider, "Ground");
         xAxisInput = CrossPlatformInputManager.GetAxis("Horizontal");
         yAxisInput = CrossPlatformInputManager.GetAxis("Vertical");
 
         if (isActive)
         {
             PlayerMovement();
-            if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")))
+            if (crateToPull)
             {
-                DeathSequence();
+                PullingCrate();
             }
+            LosingHealth();
         }
 	}
 
@@ -64,7 +70,7 @@ public class Player : MonoBehaviour {
         bool isRunning = Mathf.Abs(xAxisInput) > Mathf.Epsilon;
         animator.SetBool("Running", isRunning);  // running animation
         myRigidbody.velocity = new Vector2(xAxisInput * currentRunningSpeed, myRigidbody.velocity.y);
-        if (isTouchingGround)
+        if (isTouchingGround && !isPullingCrate)
         {
             transform.localScale = new Vector2(Mathf.Sign(xAxisInput), 1f); // Mathf.sign returns 1 or -1 - fliping sprite to runing direction
         }
@@ -72,7 +78,7 @@ public class Player : MonoBehaviour {
 
     private void Jumping()
     {
-        if (CrossPlatformInputManager.GetButtonDown("Jump") && isTouchingGround)
+        if (CrossPlatformInputManager.GetButtonDown("Jump") && isTouchingGround && !isPullingCrate)
         {
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpingStrenght);
         }
@@ -80,7 +86,7 @@ public class Player : MonoBehaviour {
 
     private void ClimbingLadder()
     {
-        bool isTouchingLadder = feetCollider.IsTouchingLayers(LayerMask.GetMask("Ladder"));
+        bool isTouchingLadder = IsPlayerTouching(feetCollider, "Ladder");
         animator.SetBool("OnLadder", isTouchingLadder && !isTouchingGround);
         animator.SetBool("Climbing", isTouchingLadder && (yAxisInput != 0 || xAxisInput != 0));
 
@@ -97,6 +103,31 @@ public class Player : MonoBehaviour {
         }
     }
 
+    private void PullingCrate()
+    {
+        if (CrossPlatformInputManager.GetButton("Fire1"))
+        {
+            isPullingCrate = true;
+            crateToPull.GetComponent<Rigidbody2D>().velocity = myRigidbody.velocity;
+            currentRunningSpeed = runningSpeedWithCrate;
+        }
+        else
+        {
+            currentRunningSpeed = defaultRunningSpeed;
+            crateToPull.GetComponent<Collider2D>().sharedMaterial = afterDeathMaterial;
+            isPullingCrate = false;
+        }
+
+    }
+
+    private void LosingHealth() // TODO utrata zdrowia, a potem śmierć
+    {
+        if (IsPlayerTouching(bodyCollider,"Hazards"))
+        {
+            DeathSequence();
+        }
+    }
+
     private void DeathSequence()
     {
         isActive = false;
@@ -105,5 +136,28 @@ public class Player : MonoBehaviour {
         feetCollider.sharedMaterial = afterDeathMaterial;
         bodyCollider.sharedMaterial = afterDeathMaterial;
         GameManager.Instance.LevelLose();
+    }
+
+    private bool IsPlayerTouching(Collider2D collider, string thing)
+    {
+        return collider.IsTouchingLayers(LayerMask.GetMask(thing));
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Crates"))
+        {
+            collision.GetComponent<Collider2D>().sharedMaterial = zeroFrictionMaterial;
+            crateToPull = collision.gameObject; 
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Crates"))
+        {
+            collision.GetComponent<Collider2D>().sharedMaterial = afterDeathMaterial;
+            crateToPull = null;
+        }
     }
 }
