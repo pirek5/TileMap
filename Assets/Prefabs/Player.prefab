@@ -24,7 +24,8 @@ GameObject:
   - component: {fileID: 50219639624163520}
   - component: {fileID: 61704580938311770}
   - component: {fileID: 70005870839569410}
-  - component: {fileID: 114556252161990220}
+  - component: {fileID: 114951439596820972}
+  - component: {fileID: 114315443393814648}
   m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
@@ -123,7 +124,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114556252161990220
+--- !u!114 &114315443393814648
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,16 +132,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1635311098100262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04fbf1dfb00ad0f4bb9ccd3ebaf0e8f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 35a4585c083bef64fa3cfa99988d776e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  afterDeathMaterial: {fileID: 6200000, guid: dc65d46b4ea543e46bbebcfc23487d95, type: 2}
   runningSpeedOnLadder: 1.6
   runningSpeedWithCrate: 3
   defaultRunningSpeed: 7
   climbingLadderSpeed: 3
-  jumpingStrenght: 15
-  afterDeathBodyThrow: 15
+  jumpingStrenght: 16
+  currentRunningSpeed: 0
+--- !u!114 &114951439596820972
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635311098100262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f4d2dbdd07cc54c9f132876efc38b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zeroFrictionMaterial: {fileID: 0}
+  afterDeathMaterial: {fileID: 0}
+  afterDeathBodyThrow: 1
 --- !u!212 &212829726248767416
 SpriteRenderer:
   m_ObjectHideFlags: 1

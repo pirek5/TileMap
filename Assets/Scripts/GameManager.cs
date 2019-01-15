@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         Player player = FindObjectOfType<Player>();
         player.GetComponent<Animator>().SetTrigger("Win");
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        player.IsActive = false;
+        Player.IsActive = false;
     }
 
     private void StopEnemiesMovement()
