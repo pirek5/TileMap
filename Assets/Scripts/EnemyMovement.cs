@@ -23,7 +23,10 @@ public class EnemyMovement : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isTimeToTurn = true;
+        if (!collision.GetComponent<PlayerMovement>())
+        {
+            isTimeToTurn = true;
+        }
     }
 
     private void Turn()

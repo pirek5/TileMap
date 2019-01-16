@@ -15,6 +15,7 @@ public class Player : MonoBehaviour { // base class - collect input and informat
     protected GameObject crateToPull;
 
     //cached components 
+    protected HealthPanel healthPanel;
     protected Animator animator;
     protected Rigidbody2D myRigidbody;
     protected BoxCollider2D feetCollider;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour { // base class - collect input and informat
         myRigidbody = GetComponent<Rigidbody2D>();
         feetCollider = GetComponent<BoxCollider2D>();
         bodyCollider = GetComponent<CapsuleCollider2D>();
+        healthPanel = FindObjectOfType<HealthPanel>();
 	}
 
     protected virtual void Update ()
