@@ -18,14 +18,19 @@ public class HealthPanel : MonoBehaviour {
         }
     }
 
-    public void HeartLose()
+    public void HeartLose(int heartsToLose)
     {
         foreach(Heart heart in hearts)
         {
+            int i = 0;
             if (heart.isCollected)
             {
+                i++;
                 heart.ChangeHealth();
-                return;
+                if(i>= heartsToLose)
+                {
+                    return;
+                }
             }
         }
     }

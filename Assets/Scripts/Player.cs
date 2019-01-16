@@ -7,7 +7,7 @@ public class Player : MonoBehaviour { // base class - collect input and informat
 
     //state
     static protected bool isActive;
-    static public bool IsActive { set { isActive = value; } }
+    static public bool IsActive { get { return isActive; }  set { isActive = value; } }
     protected float xAxisInput, yAxisInput;
     protected bool isTouchingGround;
     protected bool isPullingCrate;
@@ -20,10 +20,12 @@ public class Player : MonoBehaviour { // base class - collect input and informat
     protected Rigidbody2D myRigidbody;
     protected BoxCollider2D feetCollider;
     protected CapsuleCollider2D bodyCollider;
+    protected CircleCollider2D headCollider;
 
     void Awake () {
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
+        headCollider = GetComponent<CircleCollider2D>();
         feetCollider = GetComponent<BoxCollider2D>();
         bodyCollider = GetComponent<CapsuleCollider2D>();
         healthPanel = FindObjectOfType<HealthPanel>();
@@ -47,7 +49,6 @@ public class Player : MonoBehaviour { // base class - collect input and informat
         if(collision.gameObject.layer == LayerMask.NameToLayer("Crates"))
         {
             crateToPull = collision.gameObject;
-            crateToPull.GetComponent<SpriteRenderer>().color = Color.yellow;
         }
     }
 
@@ -55,7 +56,6 @@ public class Player : MonoBehaviour { // base class - collect input and informat
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Crates"))
         {
-            collision.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             crateToPull = null;
         }
     }

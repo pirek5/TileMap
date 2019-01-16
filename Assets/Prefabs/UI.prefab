@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222984462733087986}
   - component: {fileID: 114787288764277788}
   - component: {fileID: 114340990362878070}
+  - component: {fileID: 114965417206140952}
   m_Layer: 5
   m_Name: Health Panel
   m_TagString: Untagged
@@ -40,6 +41,7 @@ GameObject:
   - component: {fileID: 222437282736245538}
   - component: {fileID: 114315588615955718}
   - component: {fileID: 95775096195922088}
+  - component: {fileID: 114549864799574226}
   m_Layer: 5
   m_Name: Heart 2
   m_TagString: Untagged
@@ -58,6 +60,7 @@ GameObject:
   - component: {fileID: 222535883585163442}
   - component: {fileID: 114660896636188294}
   - component: {fileID: 95339770567478962}
+  - component: {fileID: 114144678165589132}
   m_Layer: 5
   m_Name: Heart 3
   m_TagString: Untagged
@@ -76,6 +79,7 @@ GameObject:
   - component: {fileID: 222472221756412262}
   - component: {fileID: 114861032583586372}
   - component: {fileID: 95730843760123264}
+  - component: {fileID: 114181069086517976}
   m_Layer: 5
   m_Name: Heart 1
   m_TagString: Untagged
@@ -155,6 +159,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114144678165589132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191940734790958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4557cabf7e2360544a5733c47224abfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartIndex: 3
+  isCollected: 1
+--- !u!114 &114181069086517976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1588229351813506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4557cabf7e2360544a5733c47224abfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartIndex: 1
+  isCollected: 1
 --- !u!114 &114315588615955718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,6 +255,19 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114549864799574226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1099690441801812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4557cabf7e2360544a5733c47224abfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartIndex: 2
+  isCollected: 1
 --- !u!114 &114581738749559022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -322,6 +365,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114965417206140952
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1058126114652390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf9d4dd2f7926c4ca6a43f9980ed60d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222437282736245538
 CanvasRenderer:
   m_ObjectHideFlags: 1

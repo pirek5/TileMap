@@ -135,12 +135,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a4585c083bef64fa3cfa99988d776e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runningSpeedOnLadder: 1.6
-  runningSpeedWithCrate: 3
-  defaultRunningSpeed: 7
+  movingSpeedOnLadder: 1.6
+  movingSpeedWithCrate: 3
+  defaultMovingSpeed: 6
   climbingLadderSpeed: 3
   jumpingStrenght: 16
-  currentRunningSpeed: 0
+  currentMovingSpeed: 0
 --- !u!114 &114951439596820972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,8 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verticalAfterHitBodyThrow: 8
-  horizontalAfterHitBodyThrow: 2
-  immortalityPeriod: 0.3
+  horizontalAfterHitBodyThrow: 3.5
+  immortalityPeriod: 0.4
+  drowningTime: 4
 --- !u!212 &212829726248767416
 SpriteRenderer:
   m_ObjectHideFlags: 1

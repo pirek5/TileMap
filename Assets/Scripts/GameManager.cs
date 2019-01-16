@@ -34,9 +34,12 @@ public class GameManager : MonoBehaviour
 
     public void LevelWin()
     {
-        StopPlayerMovement();
-        StopEnemiesMovement();
-        StartCoroutine(EndCorutine());
+        if (Player.IsActive)
+        {
+            StopPlayerMovement();
+            StopEnemiesMovement();
+            StartCoroutine(EndCorutine());
+        }
     }
 
     public void LevelLose()

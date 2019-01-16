@@ -39,7 +39,7 @@ public class EnemyMovement : MonoBehaviour {
     public void Stop()
     {
         stopped = true;
+        myRigidbody.velocity = Vector2.zero;
     }
-
 
 }

@@ -6,18 +6,18 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerMovement : Player {
 
     //config
-    [SerializeField] private float runningSpeedOnLadder = 1f;
-    [SerializeField] private float runningSpeedWithCrate = 1f;
-    [SerializeField] private float defaultRunningSpeed = 1f;
+    [SerializeField] private float movingSpeedOnLadder = 1f;
+    [SerializeField] private float movingSpeedWithCrate = 1f;
+    [SerializeField] private float defaultMovingSpeed = 1f;
     [SerializeField] private float climbingLadderSpeed = 1f;
     [SerializeField] private float jumpingStrenght = 1f;
 
     //state
-    public float currentRunningSpeed;
+    public float currentMovingSpeed;
 
     void Start ()
     {
-        currentRunningSpeed = defaultRunningSpeed;
+        currentMovingSpeed = defaultMovingSpeed;
         Player.IsActive = true;
     }
 	
@@ -25,19 +25,19 @@ public class PlayerMovement : Player {
         base.Update();
         if (isActive)
         {
-            Running();
+            MovingHorizontal();
             Jumping();
             PullingCrate();
             ClimbingLadder();
-            SetRunningSpeed();
+            SetMovingSpeed();
         }
     }
 
-    private void Running()
+    private void MovingHorizontal()
     {
         bool isRunning = Mathf.Abs(xAxisInput) > Mathf.Epsilon;
         animator.SetBool("Running", isRunning);  // running animation
-        myRigidbody.velocity = new Vector2(xAxisInput * currentRunningSpeed, myRigidbody.velocity.y);
+        myRigidbody.velocity = new Vector2(xAxisInput * currentMovingSpeed, myRigidbody.velocity.y);
         if (isTouchingGround && !isPullingCrate)
         {
            transform.localScale = new Vector2(Mathf.Sign(xAxisInput), 1f); // Mathf.sign returns 1 or -1 - fliping sprite to runing direction
@@ -86,22 +86,22 @@ public class PlayerMovement : Player {
 
     }
 
-    private void SetRunningSpeed()
+    private void SetMovingSpeed()
     {
         if (isPullingCrate)
         {
-            animator.speed = runningSpeedWithCrate/defaultRunningSpeed;
-            currentRunningSpeed = runningSpeedWithCrate;
+            animator.speed = movingSpeedWithCrate/defaultMovingSpeed;
+            currentMovingSpeed = movingSpeedWithCrate;
         }
         else if(isTouchingLadder && !isTouchingGround)
         {
             animator.speed = 1f;
-            currentRunningSpeed = runningSpeedOnLadder;
+            currentMovingSpeed = movingSpeedOnLadder;
         }
         else
         {
             animator.speed = 1f;
-            currentRunningSpeed = defaultRunningSpeed;
+            currentMovingSpeed = defaultMovingSpeed;
         }
     }
 }
