@@ -9,8 +9,17 @@ namespace LevelManagement
     {
         [SerializeField] private TransitionFader transitionFader;
 
+        [SerializeField] private GameObject firstPage;
+        [SerializeField] private GameObject secsondPage;
+
+        public void OnContinePressed()
+        {
+            SwitchPages();
+        }
+
         public void OnNextLevelPressed()
         {
+            SwitchPages();
             StartCoroutine(OnNextLevelPressedCorutine());
         }
 
@@ -24,14 +33,22 @@ namespace LevelManagement
 
         public void OnRestartPressed()
         {
+            SwitchPages();
             base.OnBackPressed();
             LevelLoader.ReloadLevel();
         }
 
         public void OnMainMenuPressed()
         {
+            SwitchPages();
             LevelLoader.LoadMainMenuLevel();
             MainMenu.Open();
+        }
+
+        public void SwitchPages()
+        {
+            firstPage.SetActive(!firstPage.activeSelf);
+            secsondPage.SetActive(!secsondPage.activeSelf);
         }
     }
 }

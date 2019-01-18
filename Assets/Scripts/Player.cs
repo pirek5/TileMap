@@ -6,6 +6,8 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour { // base class - collect input and information about state of player
 
     //state
+    static protected int lives = 3;
+    static public int Lives { get { return lives; } set { lives = value; } }
     static protected bool isActive;
     static public bool IsActive { get { return isActive; }  set { isActive = value; } }
     protected float xAxisInput, yAxisInput;
@@ -15,7 +17,7 @@ public class Player : MonoBehaviour { // base class - collect input and informat
     protected GameObject crateToPull;
 
     //cached components 
-    protected HealthPanel healthPanel;
+    //protected IconPanel healthPanel;
     protected Animator animator;
     protected Rigidbody2D myRigidbody;
     protected BoxCollider2D feetCollider;
@@ -28,7 +30,7 @@ public class Player : MonoBehaviour { // base class - collect input and informat
         headCollider = GetComponent<CircleCollider2D>();
         feetCollider = GetComponent<BoxCollider2D>();
         bodyCollider = GetComponent<CapsuleCollider2D>();
-        healthPanel = FindObjectOfType<HealthPanel>();
+      //  healthPanel = FindObjectOfType<IconPanel>();
 	}
 
     protected virtual void Update ()

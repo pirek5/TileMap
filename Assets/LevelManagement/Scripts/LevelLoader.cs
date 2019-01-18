@@ -40,7 +40,6 @@ namespace LevelManagement
 
         public static void ReloadLevel()
         {
-
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 

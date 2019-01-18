@@ -23,10 +23,8 @@ namespace LevelManagement
 
         public void OnRestartPressed()
         {
-            print("1");
             if (GameManager.Instance != null)
             {
-                print("2");
                 Time.timeScale = 1;
                 LevelLoader.ReloadLevel();
                 base.OnBackPressed();

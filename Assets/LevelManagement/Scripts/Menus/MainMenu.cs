@@ -31,9 +31,10 @@ namespace LevelManagement
 
         private IEnumerator OnPlayPressedRoutine()
         {
-            TransitionFader.PlayTransition(startTransitionPrefab);
+            //TransitionFader.PlayTransition(startTransitionPrefab);
             LevelLoader.LoadNextLevel();
-            yield return new WaitForSeconds(delay);
+            //yield return new WaitForSeconds(delay);
+            yield return null;
             GameMenu.Open();
         }
 

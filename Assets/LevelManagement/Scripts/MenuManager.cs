@@ -35,10 +35,7 @@ namespace LevelManagement
             {
                 instance = this;
                 InitializeMenus();
-                DontDestroyOnLoad(this.gameObject);
             }
-
-
         }
 
         private void OnDestroy()

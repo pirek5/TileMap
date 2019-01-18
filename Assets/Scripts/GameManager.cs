@@ -6,12 +6,13 @@ using LevelManagement;
 
 public class GameManager : MonoBehaviour
 {
+    // reference in editor
     [SerializeField] private TransitionFader transitionFader;
+
 
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
 
-    // initialize references
     private void Awake()
     {
         if (instance != null)
@@ -38,7 +39,8 @@ public class GameManager : MonoBehaviour
         {
             StopPlayerMovement();
             StopEnemiesMovement();
-            StartCoroutine(EndCorutine());
+            WinScreen.Open();
+            //StartCoroutine(EndCorutine());
         }
     }
 
@@ -48,19 +50,20 @@ public class GameManager : MonoBehaviour
         LoseScreen.Open();
     }
 
-    private IEnumerator EndCorutine()
-    {
-        if (transitionFader != null)
-        {
-            TransitionFader.PlayTransition(transitionFader);
-            yield return new WaitForSeconds(transitionFader.FadeOnDuration + transitionFader.Delay);
-        }
-        else
-        {
-            yield return null;
-        }
-        WinScreen.Open();
-    }
+    //private IEnumerator EndCorutine()
+    //{
+    //    if (transitionFader != null)
+    //    {
+    //        TransitionFader.PlayTransition(transitionFader);
+    //        yield return new WaitForSeconds(transitionFader.FadeOnDuration + transitionFader.Delay);
+    //    }
+    //    else
+    //    {
+    //        yield return null;
+    //    }
+    //    yield return null;
+    //    WinScreen.Open();
+    //}
 
     private void StopPlayerMovement()
     {
@@ -78,5 +81,10 @@ public class GameManager : MonoBehaviour
             enemy.GetComponent<Animator>().SetTrigger("End");
             enemy.Stop();
         }
+    }
+
+    public void CoinPickedUp()
+    {
+        print("coin picked up");
     }
 }
