@@ -28,7 +28,6 @@ public class LevelScoreDisplay : MonoBehaviour {
 
     public void UpdateScore(int maxCoins, int coins, int hearts, int numberOfStars)
     {
-        print("number of stars :" + numberOfStars);
         coinsText.text = coins + "/" + maxCoins;
         heartsText.text = hearts + "/3";
         starsPanel.IconEnable(4);

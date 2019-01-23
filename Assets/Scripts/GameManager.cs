@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using LevelManagement;
+using LevelManagement.Data;
 
 public class GameManager : MonoBehaviour // TODO zmienic z magicznych liczba serca i liczby gwiazdek
 {
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour // TODO zmienic z magicznych liczba ser
             LevelScoreManager.Instance.UpdateLevelScoreDisplay();
             StopPlayerMovement();
             StopEnemiesMovement();
+            DataManager.instance.CompareDataAfterLevel();
         }
     }
 

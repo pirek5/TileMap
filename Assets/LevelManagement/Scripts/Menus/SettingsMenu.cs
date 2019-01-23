@@ -11,6 +11,7 @@ namespace LevelManagement
         [SerializeField] private Slider masterVolumeSlider;
         [SerializeField] private Slider sfxVolumeSlider;
         [SerializeField] private Slider musicVolumeSlider;
+        [SerializeField] private GameObject confiramtionWindow;
 
         private DataManager dataManager;
 
@@ -52,8 +53,21 @@ namespace LevelManagement
 
         public void OnResetPressed()
         {
+            confiramtionWindow.SetActive(true);
             dataManager.LoadDefault();
             dataManager.Save();
+        }
+
+        public void OnResetYesPressed()
+        {
+            confiramtionWindow.SetActive(false);
+            dataManager.LoadDefault();
+            dataManager.Save();
+        }
+
+        public void OnResetCancelPressed()
+        {
+            confiramtionWindow.SetActive(false);
         }
 
         public override void OnBackPressed()
@@ -63,7 +77,6 @@ namespace LevelManagement
             {
                 dataManager.Save();
             }
-            
         }
 
         public void LoadData()

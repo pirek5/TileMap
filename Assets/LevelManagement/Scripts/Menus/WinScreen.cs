@@ -10,24 +10,10 @@ namespace LevelManagement
     public class WinScreen : Menu<WinScreen>
     {
         [SerializeField] private GameObject firstPage;
-        [SerializeField] private GameObject secsondPage;
+        [SerializeField] private GameObject secondPage;
 
-        public void OnContinePressed() // przeniść do DataManager albo gamemanager
+        public void OnContinePressed()
         {
-            int currentLevelStars = LevelScoreManager.Instance.stars;
-            int nextLevelStars = 0;
-            int oldCurrentLevelStars = DataManager.instance.LevelsData[SceneManager.GetActiveScene().buildIndex-2];
-            int oldNextLevelStars = DataManager.instance.LevelsData[SceneManager.GetActiveScene().buildIndex-1];
-
-            if (currentLevelStars > oldCurrentLevelStars)
-            {
-                DataManager.instance.LevelsData[SceneManager.GetActiveScene().buildIndex-2] = currentLevelStars;
-            }
-            if (nextLevelStars > oldNextLevelStars)
-            {
-                DataManager.instance.LevelsData[SceneManager.GetActiveScene().buildIndex-1] = nextLevelStars;
-            }
-            DataManager.instance.Save();
             SwitchPages();
         }
 
@@ -55,7 +41,7 @@ namespace LevelManagement
         private void SwitchPages()
         {
             firstPage.SetActive(!firstPage.activeSelf);
-            secsondPage.SetActive(!secsondPage.activeSelf);
+            secondPage.SetActive(!secondPage.activeSelf);
         }
     }
 }

@@ -39,13 +39,13 @@ namespace LevelManagement
             CreditsMenu.Open();
         }
 
-        public void OnPlayerNameValueChanged()
-        {
-            if(dataManager != null)
-            {
-                dataManager.PlayerName = inputField.text;
-            }
-        }
+        //public void OnPlayerNameValueChanged()
+        //{
+        //    if(dataManager != null)
+        //    {
+        //        dataManager.PlayerName = inputField.text;
+        //    }
+        //}
 
         public void OnPlayerNameEndEdit()
         {
@@ -65,7 +65,7 @@ namespace LevelManagement
             if(dataManager != null && inputField != null)
             {
                 dataManager.Load();
-                inputField.text = dataManager.PlayerName;
+                //inputField.text = dataManager.PlayerName;
             }       
         }
 

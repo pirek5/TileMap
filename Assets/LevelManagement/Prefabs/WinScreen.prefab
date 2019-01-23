@@ -673,7 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstPage: {fileID: 1895025787049314}
-  secsondPage: {fileID: 1364465494384090}
+  secondPage: {fileID: 1364465494384090}
 --- !u!114 &114208213401461300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1257,9 +1257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf9d4dd2f7926c4ca6a43f9980ed60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stars: 1
-  On: 0
-  Off: 0
 --- !u!114 &114850058360746786
 MonoBehaviour:
   m_ObjectHideFlags: 1

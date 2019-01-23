@@ -8,6 +8,8 @@ namespace LevelManagement
     public class LevelLoader : MonoBehaviour
     {
         private static int mainMenuIndex = 1;
+        public static int level1Index = 2;
+        public static int numberOfScenes = 6;
         public static LevelLoader instance;
         public static bool levelIsReady = false;
 

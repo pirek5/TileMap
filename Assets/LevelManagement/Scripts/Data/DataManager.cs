@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace LevelManagement.Data
 {
     public class DataManager : MonoBehaviour
     {
-        [SerializeField] int numberOfLevels = 4;
         private SaveData saveData;
         private JsonSaver jsonSaver;
-        //public Dictionary<int, LevelData> LevelsData = new Dictionary<int, LevelData>();
 
         public static  DataManager instance;
 
@@ -58,17 +57,17 @@ namespace LevelManagement.Data
             set { saveData.musicVolume = value; }
         }
 
-        public int[] LevelsData
+        public int[] numberOfStarsInEachLevel
         {
-            get { return saveData.LevelsData; }
-            set { saveData.LevelsData = value; }
+            get { return saveData.numberOfStarsInEachLevel; }
+            set { saveData.numberOfStarsInEachLevel = value; }
         }
 
-        public string PlayerName
-        {
-            get { return saveData.playerName; }
-            set { saveData.playerName = value; }
-        }
+        //public string PlayerName
+        //{
+        //    get { return saveData.playerName; }
+        //    set { saveData.playerName = value; }
+        //}
 
         public void Save()
         {
@@ -87,10 +86,32 @@ namespace LevelManagement.Data
 
         public void LoadDefault()
         {
-            LevelsData[0] = 1;
-            LevelsData[1] = 0;
-            LevelsData[2] = 0;
-            LevelsData[3] = 0;
+            for(int i = 0; i<saveData.numberOfStarsInEachLevel.Length; i++)
+            {
+                numberOfStarsInEachLevel[i] = -1;
+                if(i == LevelLoader.level1Index)
+                {
+                    numberOfStarsInEachLevel[i] = 0;
+                }
+            }
+        }
+
+        public void CompareDataAfterLevel()
+        {
+            int currentLevelStars = LevelScoreManager.Instance.stars;
+            int nextLevelStars = 0;
+            int oldCurrentLevelStars = numberOfStarsInEachLevel[SceneManager.GetActiveScene().buildIndex];
+            int oldNextLevelStars = numberOfStarsInEachLevel[SceneManager.GetActiveScene().buildIndex+1];
+
+            if (currentLevelStars > oldCurrentLevelStars)
+            {
+               numberOfStarsInEachLevel[SceneManager.GetActiveScene().buildIndex] = currentLevelStars;
+            }
+            if (nextLevelStars > oldNextLevelStars)
+            {
+               numberOfStarsInEachLevel[SceneManager.GetActiveScene().buildIndex + 1] = nextLevelStars;
+            }
+            Save();
         }
     }
 }
