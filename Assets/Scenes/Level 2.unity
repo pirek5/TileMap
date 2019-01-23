@@ -6710,7 +6710,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.594692, y: -10.086597, z: -10}
+  m_LocalPosition: {x: -16.64, y: -11.19, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1641357005}
@@ -7163,6 +7163,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 936aa67637b6e86429778fdb2aded831, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &656691994 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114965417206140952, guid: 936aa67637b6e86429778fdb2aded831,
+    type: 2}
+  m_PrefabInternal: {fileID: 656691993}
+  m_Script: {fileID: 11500000, guid: 5bf9d4dd2f7926c4ca6a43f9980ed60d, type: 3}
 --- !u!1 &680632380
 GameObject:
   m_ObjectHideFlags: 3
@@ -33683,6 +33689,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114951439596820972, guid: 004a9715ac0ac6f49b344e227e023f52,
+        type: 2}
+      propertyPath: healthPanel
+      value: 
+      objectReference: {fileID: 656691994}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 004a9715ac0ac6f49b344e227e023f52, type: 2}
   m_IsPrefabAsset: 0

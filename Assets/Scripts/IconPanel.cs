@@ -7,26 +7,25 @@ public class IconPanel : MonoBehaviour {
 
     List<Icon> icons;
     List<Icon> reversedIcons = new List<Icon>();
-    public int stars = 1;
-    public bool On = false;
-    public bool Off = false;
+    //public bool On = false;
+    //public bool Off = false;
 
-    private void Update()
-    {
-        if (Off)
-        {
-            IconDisable(stars);
-            Off = false;
-        }
+    //private void Update()
+    //{
+        //    if (Off)
+        //    {
+        //        IconDisable(stars);
+        //        Off = false;
+        //    }
 
-        if (On)
-        {
-            IconEnable(stars);
-            On = false;
-        }
-    }
+        //    if (On)
+        //    {
+        //        IconEnable(stars);
+        //        On = false;
+        //    }
+    //}
 
-    void Start ()
+    void Awake ()
     {
         Icon[] tempIcons = GetComponentsInChildren<Icon>();
         icons = tempIcons.OrderBy(o => o.iconIndex).ToList();  // sorted list by index

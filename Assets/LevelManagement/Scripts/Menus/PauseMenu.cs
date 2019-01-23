@@ -26,7 +26,7 @@ namespace LevelManagement
             if (GameManager.Instance != null)
             {
                 Time.timeScale = 1;
-                LevelLoader.ReloadLevel();
+                LevelLoader.instance.ReloadLevel();
                 base.OnBackPressed();
             }
         }
@@ -34,7 +34,7 @@ namespace LevelManagement
         public void OnMainMenuPressed()
         {
             Time.timeScale = 1;
-            LevelLoader.LoadMainMenuLevel();
+            LevelLoader.instance.LoadMainMenuLevel();
             MainMenu.Open();
         }
 

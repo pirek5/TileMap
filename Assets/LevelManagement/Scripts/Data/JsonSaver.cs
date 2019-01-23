@@ -21,12 +21,12 @@ namespace LevelManagement.Data
 
         public void Save(SaveData data)
         {
-            data.hashValue = String.Empty;
+            //data.hashValue = String.Empty;
 
             string json = JsonUtility.ToJson(data);
 
-            data.hashValue = GetSHA256(json);
-            json = JsonUtility.ToJson(data);
+            //data.hashValue = GetSHA256(json);
+            //json = JsonUtility.ToJson(data);
             
 
             string saveFilename = GetSaveFilename();
@@ -48,16 +48,14 @@ namespace LevelManagement.Data
                 {
                     string json = reader.ReadToEnd();
 
-                    if (CheckData(json))
-                    {
+                   // if (CheckData(json))
+                   // {
                         JsonUtility.FromJsonOverwrite(json, data);
-                    }
-                    else
-                    {
-                        Debug.Log("invalid hash");
-                    }
-
-                    
+                   // }
+                   // else
+                   // {
+                     //   Debug.Log("invalid hash");
+                   // }
                 }
                 return true;
                 

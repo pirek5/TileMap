@@ -50,6 +50,12 @@ namespace LevelManagement
             }
         }
 
+        public void OnResetPressed()
+        {
+            dataManager.LoadDefault();
+            dataManager.Save();
+        }
+
         public override void OnBackPressed()
         {
             base.OnBackPressed();

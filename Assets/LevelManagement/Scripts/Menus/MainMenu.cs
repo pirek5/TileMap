@@ -8,8 +8,6 @@ namespace LevelManagement
 {
     public class MainMenu : Menu<MainMenu>
     {
-        [SerializeField] private float delay;
-        [SerializeField] private TransitionFader startTransitionPrefab;
         [SerializeField] private InputField inputField;
         private DataManager dataManager;
 
@@ -26,16 +24,9 @@ namespace LevelManagement
 
         public void OnPlayPressed()
         {
-            StartCoroutine(OnPlayPressedRoutine());
-        }
-
-        private IEnumerator OnPlayPressedRoutine()
-        {
-            //TransitionFader.PlayTransition(startTransitionPrefab);
-            LevelLoader.LoadNextLevel();
-            //yield return new WaitForSeconds(delay);
-            yield return null;
-            GameMenu.Open();
+            ChooseLevelMenu.Open();
+            ChooseLevelMenu menu = FindObjectOfType<ChooseLevelMenu>(); //TODO
+            menu.Init();
         }
 
         public void OnSettingsPressed()
@@ -75,9 +66,7 @@ namespace LevelManagement
             {
                 dataManager.Load();
                 inputField.text = dataManager.PlayerName;
-            }
-            
-            
+            }       
         }
 
     }

@@ -29,7 +29,7 @@ namespace LevelManagement
         {
             yield return new WaitForSeconds(delay);
             screenFader.FadeOff();
-            LevelLoader.LoadMainMenuLevel();
+            LevelLoader.instance.LoadMainMenuLevel();
             yield return new WaitForSeconds(screenFader.FadeOffDuration);
             Destroy(gameObject);
         }

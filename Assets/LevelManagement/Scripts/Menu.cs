@@ -10,6 +10,8 @@ namespace LevelManagement
         private static T instance;
         public static T Instance { get { return instance; } }
 
+        protected Menu menuToOpen;
+
         protected virtual void Awake()
         {
             if (instance != null)
@@ -37,6 +39,18 @@ namespace LevelManagement
                 MenuManager.Instance.OpenMenu(Instance);
             }
         }
+
+        //protected IEnumerator OpenMenuCoroutine() TODO
+        //{
+        //    while (!LevelLoader.levelIsReady)
+        //    {
+        //        yield return null;
+        //    }
+        //    if (MenuManager.Instance != null && Instance != null)
+        //    {
+        //        MenuManager.Instance.OpenMenu(Instance);
+        //    }
+        //}
     }
 
     [RequireComponent(typeof(Canvas))]
@@ -50,6 +64,5 @@ namespace LevelManagement
             }
 
         }
-
     }
 }

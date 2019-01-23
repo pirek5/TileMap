@@ -4,12 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using LevelManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour // TODO zmienic z magicznych liczba serca i liczby gwiazdek
 {
-    // reference in editor
-    [SerializeField] private TransitionFader transitionFader;
-
-
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
 
@@ -37,10 +33,10 @@ public class GameManager : MonoBehaviour
     {
         if (Player.IsActive)
         {
+            WinScreen.Open();
+            LevelScoreManager.Instance.UpdateLevelScoreDisplay();
             StopPlayerMovement();
             StopEnemiesMovement();
-            WinScreen.Open();
-            //StartCoroutine(EndCorutine());
         }
     }
 
@@ -49,21 +45,6 @@ public class GameManager : MonoBehaviour
         StopEnemiesMovement();
         LoseScreen.Open();
     }
-
-    //private IEnumerator EndCorutine()
-    //{
-    //    if (transitionFader != null)
-    //    {
-    //        TransitionFader.PlayTransition(transitionFader);
-    //        yield return new WaitForSeconds(transitionFader.FadeOnDuration + transitionFader.Delay);
-    //    }
-    //    else
-    //    {
-    //        yield return null;
-    //    }
-    //    yield return null;
-    //    WinScreen.Open();
-    //}
 
     private void StopPlayerMovement()
     {
@@ -81,10 +62,5 @@ public class GameManager : MonoBehaviour
             enemy.GetComponent<Animator>().SetTrigger("End");
             enemy.Stop();
         }
-    }
-
-    public void CoinPickedUp()
-    {
-        print("coin picked up");
     }
 }

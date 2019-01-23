@@ -6,8 +6,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour { // base class - collect input and information about state of player
 
     //state
-    static protected int lives = 3;
-    static public int Lives { get { return lives; } set { lives = value; } }
+    protected int lives = 3;
     static protected bool isActive;
     static public bool IsActive { get { return isActive; }  set { isActive = value; } }
     protected float xAxisInput, yAxisInput;

@@ -14,6 +14,7 @@ namespace LevelManagement.Data
         public float masterVolume;
         public float sfxVolume;
         public float musicVolume;
+        public int[] LevelsData;
 
         public string hashValue;
 
@@ -24,8 +25,7 @@ namespace LevelManagement.Data
             sfxVolume = 0f;
             musicVolume = 0f;
             hashValue = String.Empty;
+            LevelsData = new int[4];
         }
-
-
     } 
 }

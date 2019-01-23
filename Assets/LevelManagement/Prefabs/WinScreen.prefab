@@ -672,8 +672,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21bf8475bdfdce43b6afec84200a28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionFader: {fileID: 114073531684932296, guid: 74694e81d5429cc4eab795b5e50f47db,
-    type: 2}
   firstPage: {fileID: 1895025787049314}
   secsondPage: {fileID: 1364465494384090}
 --- !u!114 &114208213401461300
@@ -880,10 +878,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98435e9096407f24faf9757518bba05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCoins: 
-  coins: 
-  hearts: 
-  numberOfStars: 0
   starsPanel: {fileID: 114841131347789262}
   heartsText: {fileID: 114209824218067490}
   coinsText: {fileID: 114029302200803356}

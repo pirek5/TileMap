@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : Player {
 
-    //reference set in editor
+    //reference set in editor //TODO bez konieczności użycia edytora
     [SerializeField] private IconPanel healthPanel;
 
     //config
@@ -36,8 +36,9 @@ public class PlayerHealth : Player {
     {
         if (IsPlayerTouching(feetCollider, "Hazards") && isActive)
         {
-            isActive = false;
             lives--;
+            LevelScoreManager.Instance.UpdateHeartsAmount(lives);
+            isActive = false;
             myRigidbody.velocity = new Vector2(Mathf.Sign(myRigidbody.velocity.x)*horizontalAfterHitBodyThrow * -1f, verticalAfterHitBodyThrow);
             healthPanel.IconDisable(1);
             if (lives <= 0)
