@@ -7,21 +7,31 @@ public class PlayerMovement : Player {
 
     //config
     [SerializeField] private float movingSpeedOnLadder = 1f;
-    [SerializeField] private float movingSpeedWithCrate = 1f;
     [SerializeField] private float defaultMovingSpeed = 1f;
     [SerializeField] private float climbingLadderSpeed = 1f;
     [SerializeField] private float jumpingStrenght = 1f;
+    [SerializeField] private float pullingRange = 1f;
+
+    [SerializeField] private LayerMask crateMask;
 
     //state
     public float currentMovingSpeed;
+    private GameObject crateToPull;
 
     void Start ()
     {
         currentMovingSpeed = defaultMovingSpeed;
         Player.IsActive = true;
+        Physics2D.queriesStartInColliders = false;
     }
-	
-	protected override void Update () {
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale * pullingRange);
+    }
+
+    protected override void Update () {
         base.Update();
         if (isActive)
         {
@@ -29,23 +39,15 @@ public class PlayerMovement : Player {
             Jumping();
             PullingCrate();
             ClimbingLadder();
+            FlipSide();
             SetMovingSpeed();
         }
     }
 
     private void MovingHorizontal()
     {
-        bool isRunning = Mathf.Abs(xAxisInput) > Mathf.Epsilon;
-        animator.SetBool("Running", isRunning);  // running animation
+        animator.SetBool("Running", Mathf.Abs(xAxisInput) > Mathf.Epsilon);  // running animation
         myRigidbody.velocity = new Vector2(xAxisInput * currentMovingSpeed, myRigidbody.velocity.y);
-        if (isTouchingGround && !isPullingCrate)
-        {
-           transform.localScale = new Vector2(Mathf.Sign(xAxisInput), 1f); // Mathf.sign returns 1 or -1 - fliping sprite to runing direction
-        }
-        else if (isPullingCrate)
-        {
-            transform.localScale = new Vector2(Mathf.Sign(xAxisInput * -1f), 1f);
-        }
     }
 
     private void Jumping()
@@ -74,34 +76,62 @@ public class PlayerMovement : Player {
 
     private void PullingCrate()
     {
-        if (CrossPlatformInputManager.GetButton("Fire1") && crateToPull && isTouchingGround)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale, pullingRange, crateMask);
+        if(hit.collider != null && CrossPlatformInputManager.GetButton("Fire1"))
         {
+            PullingAnimation(true);
             isPullingCrate = true;
-            crateToPull.GetComponent<Rigidbody2D>().velocity = myRigidbody.velocity * 1.17f;
+            crateToPull = hit.collider.gameObject;
+            crateToPull.GetComponent<FixedJoint2D>().enabled = true;
+            crateToPull.GetComponent<FixedJoint2D>().connectedBody = myRigidbody;
+        }
+        else if(CrossPlatformInputManager.GetButtonUp("Fire1"))
+        {
+            PullingAnimation(false);
+            isPullingCrate = false;
+            if (crateToPull)crateToPull.GetComponent<FixedJoint2D>().enabled = false;
+        }
+    }
+
+
+    private void PullingAnimation(bool isPulling)
+    {
+        animator.SetBool("Pulling", isPulling);
+        if (isPulling)
+        {
+            animator.SetBool("PullingIdle", xAxisInput == 0);
+            animator.SetBool("PullingReverse", xAxisInput * transform.localScale.x < 0);
         }
         else
         {
-            isPullingCrate = false;
+            animator.SetBool("PullingIdle", false);
+            animator.SetBool("PullingReverse", false);
         }
 
+    }
+
+    private void FlipSide()
+    {
+        if (xAxisInput > 0 && !isPullingCrate)
+        {
+            transform.localScale = new Vector2(1f, 1f);
+        }
+        else if(xAxisInput < 0 && !isPullingCrate)
+        {
+            transform.localScale = new Vector2(-1f, 1f);
+        }
     }
 
     private void SetMovingSpeed()
     {
-        if (isPullingCrate)
+        if(isTouchingLadder && !isTouchingGround)
         {
-            animator.speed = movingSpeedWithCrate/defaultMovingSpeed;
-            currentMovingSpeed = movingSpeedWithCrate;
-        }
-        else if(isTouchingLadder && !isTouchingGround)
-        {
-            animator.speed = 1f;
             currentMovingSpeed = movingSpeedOnLadder;
         }
         else
         {
-            animator.speed = 1f;
             currentMovingSpeed = defaultMovingSpeed;
         }
     }
+
 }

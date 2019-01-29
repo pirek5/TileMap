@@ -53,9 +53,21 @@ TagManager:
   - name: Player
     uniqueID: 288744231
     locked: 0
+  - name: Foreground
+    uniqueID: 2568675643
+    locked: 0
   - name: Water
     uniqueID: 3522748951
     locked: 0
-  - name: Foreground
-    uniqueID: 2568675643
+  - name: Decals Foreground
+    uniqueID: 3559703549
+    locked: 0
+  - name: LavaLight2
+    uniqueID: 3535247043
+    locked: 0
+  - name: LavaLight
+    uniqueID: 2377330295
+    locked: 0
+  - name: Lava
+    uniqueID: 3068177245
     locked: 0

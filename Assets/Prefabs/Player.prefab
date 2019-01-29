@@ -42,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1635311098100262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.35, y: -0.41, z: 0}
+  m_LocalPosition: {x: -16.044, y: -2.317, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,7 +95,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.031175822, y: -0.4243129}
+  m_Offset: {x: -0.03117609, y: -0.43973482}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -106,7 +106,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.445208, y: 0.08479485}
+  m_Size: {x: 0.5314512, y: 0.06923604}
   m_EdgeRadius: 0
 --- !u!70 &70005870839569410
 CapsuleCollider2D:
@@ -120,8 +120,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.050000012, y: -0.042894125}
-  m_Size: {x: 0.77, y: 0.84578824}
+  m_Offset: {x: -0.0349679, y: -0.07603043}
+  m_Size: {x: 0.7367964, y: 0.80130637}
   m_Direction: 0
 --- !u!95 &95920325506780606
 Animator:
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2ba474721e850498f8f4b95b11e73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stars: 0
 --- !u!114 &114315443393814648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,10 +165,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingSpeedOnLadder: 1.6
-  movingSpeedWithCrate: 3
   defaultMovingSpeed: 6
   climbingLadderSpeed: 3
   jumpingStrenght: 16
+  pullingRange: 0.38
+  crateMask:
+    serializedVersion: 2
+    m_Bits: 8192
   currentMovingSpeed: 0
 --- !u!114 &114951439596820972
 MonoBehaviour:
@@ -230,4 +234,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1

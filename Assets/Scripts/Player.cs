@@ -13,7 +13,7 @@ public class Player : MonoBehaviour { // base class - collect input and informat
     protected bool isTouchingGround;
     protected bool isPullingCrate;
     protected bool isTouchingLadder;
-    protected GameObject crateToPull;
+    //protected GameObject crateToPull;
 
     //cached components 
     //protected IconPanel healthPanel;
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour { // base class - collect input and informat
 
     protected virtual void Update ()
     {
-        isTouchingGround = IsPlayerTouching(feetCollider, "Ground");
+        isTouchingGround = IsPlayerTouching(feetCollider, "Ground") || IsPlayerTouching(feetCollider, "Crates");
         isTouchingLadder = IsPlayerTouching(feetCollider, "Ladder");
         xAxisInput = CrossPlatformInputManager.GetAxis("Horizontal");
         yAxisInput = CrossPlatformInputManager.GetAxis("Vertical");
@@ -45,19 +45,19 @@ public class Player : MonoBehaviour { // base class - collect input and informat
         return collider.IsTouchingLayers(LayerMask.GetMask(thing));
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Crates"))
-        {
-            crateToPull = collision.gameObject;
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.layer == LayerMask.NameToLayer("Crates"))
+    //    {
+    //        crateToPull = collision.gameObject;
+    //    }
+    //}
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Crates"))
-        {
-            crateToPull = null;
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.layer == LayerMask.NameToLayer("Crates"))
+    //    {
+    //        crateToPull = null;
+    //    }
+    //}
 }

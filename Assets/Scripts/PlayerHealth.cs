@@ -14,7 +14,6 @@ public class PlayerHealth : Player {
     [SerializeField] private float drowningTime = 1f;
 
     // state
-    //private int lives = 3;
     private bool zeroVelocity = false;
 
     protected override void Update ()
@@ -34,7 +33,7 @@ public class PlayerHealth : Player {
 
     private void LosingHealth()
     {
-        if (IsPlayerTouching(feetCollider, "Hazards") && isActive)
+        if (IsPlayerTouching(bodyCollider, "Hazards") && isActive)
         {
             lives--;
             LevelScoreManager.Instance.UpdateHeartsAmount(lives);
