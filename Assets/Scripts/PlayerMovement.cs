@@ -93,7 +93,6 @@ public class PlayerMovement : Player {
         }
     }
 
-
     private void PullingAnimation(bool isPulling)
     {
         animator.SetBool("Pulling", isPulling);

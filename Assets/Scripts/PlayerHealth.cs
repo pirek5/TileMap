@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : Player {
+public class PlayerHealth : Player
+{
 
     //reference set in editor //TODO bez konieczności użycia edytora
     [SerializeField] private IconPanel healthPanel;
@@ -10,65 +11,85 @@ public class PlayerHealth : Player {
     //config
     [SerializeField] private float verticalAfterHitBodyThrow = 1f;
     [SerializeField] private float horizontalAfterHitBodyThrow = 1f;
-    [SerializeField] private float inactivityPeriod = 1f;
+    [SerializeField] private float throwPeriod = 1f;
+    [SerializeField] private float endGameDelay = 1f;
     [SerializeField] private float drowningTime = 1f;
+    [SerializeField] private float immunityPeriod = 1f;
+    [SerializeField] private float blinkingFrequency = 1f;
 
     // state
     private bool zeroVelocity = false;
+    private bool immunity = false;
 
-    protected override void Update ()
+    protected override void Update()
     {
         if (isActive)
         {
             base.Update();
-            LosingHealth();
-            FallIntoTheWater();
+            if (isTouchingEnemy && !immunity) EnemyTouched();
+            if (isTouchingLava && !immunity) LavaTouched();
+            if (isTouchingWater) WaterTouched();
         }
 
         if (zeroVelocity) // prevents weird behavior after death or during drowning
         {
             myRigidbody.velocity = Vector2.zero;
         }
-	}
-
-    private void LosingHealth()
-    {
-        if (IsPlayerTouching(bodyCollider, "Hazards") && isActive)
-        {
-            lives--;
-            LevelScoreManager.Instance.UpdateHeartsAmount(lives);
-            isActive = false;
-            myRigidbody.velocity = new Vector2(Mathf.Sign(myRigidbody.velocity.x)*horizontalAfterHitBodyThrow * -1f, verticalAfterHitBodyThrow);
-            healthPanel.IconDisable(1);
-            if (lives <= 0)
-            {
-                StartCoroutine(DelayedDeath(inactivityPeriod));
-            }
-            else
-            {
-                StartCoroutine(TemporaryInactivity());
-            }
-        }
     }
 
-    private void FallIntoTheWater()
+    private void EnemyTouched()
     {
-        if (IsPlayerTouching(headCollider, "Water"))
+        LoseHealth(1);
+        StartCoroutine(AfterHitBodyThrow());
+        CheckIfDead();
+    }
+
+    private void LoseHealth(int healthLose)
+    {
+        lives -= healthLose;
+        if (lives < 0)
         {
             lives = 0;
-            healthPanel.IconDisable(3);
-            isActive = false;
-            zeroVelocity = true;
-            myRigidbody.gravityScale = 0.3f;
-            animator.SetTrigger("Drowning");
-            StartCoroutine(DelayedDeath(drowningTime));
+        }
+        LevelScoreManager.Instance.UpdateHeartsAmount(lives);
+        healthPanel.IconDisable(healthLose);
+    }
+
+    IEnumerator AfterHitBodyThrow()
+    {
+        isActive = false;
+        myRigidbody.velocity = new Vector2(0, verticalAfterHitBodyThrow);
+        yield return new WaitForSeconds(throwPeriod);
+
+        if(lives > 0) // activate player after hit only if this wasnt last life
+        {
+            IsActive = true;
         }
     }
 
-    IEnumerator TemporaryInactivity()
+    IEnumerator TemporaryImmunity()
     {
-        yield return new WaitForSeconds(inactivityPeriod);
-        isActive = true;
+        immunity = true;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        float t1 = Time.time;
+        float t2 = t1;
+        while (t2 - t1 < immunityPeriod + blinkingFrequency)
+        {
+            t2 = Time.time;
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            yield return new WaitForSeconds(blinkingFrequency);
+        }
+        spriteRenderer.enabled = true;
+        immunity = false;
+    }
+
+    private void WaterTouched()
+    {
+        LoseHealth(lives);
+        isActive = false;
+        myRigidbody.gravityScale = 0.3f;
+        animator.SetTrigger("Drowning");
+        StartCoroutine(DelayedDeath(drowningTime));
     }
 
     private IEnumerator DelayedDeath(float delay)
@@ -81,7 +102,27 @@ public class PlayerHealth : Player {
     private void DeathSequence()
     {
         transform.localScale = new Vector2(1f, 1f);
-        animator.SetTrigger("Dead");
+        animator.SetTrigger("Grave");
         GameManager.Instance.LevelLose();
+    }
+
+    private void LavaTouched()
+    {
+        LoseHealth(1);
+        CheckIfDead();
+    }
+
+    private void CheckIfDead()
+    {
+        if (lives <= 0)
+        {
+            isActive = false;
+            animator.SetTrigger("Dead");
+            StartCoroutine(DelayedDeath(endGameDelay));
+        }
+        else
+        {
+            StartCoroutine(TemporaryImmunity());
+        }
     }
 }
