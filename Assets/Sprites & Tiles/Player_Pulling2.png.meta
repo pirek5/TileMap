@@ -1,15 +1,18 @@
 fileFormatVersion: 2
-guid: 9c188805569990e4688a6c39d7f73f32
+guid: fe3fce7bae9f43f4687bc64dc174ce38
 TextureImporter:
   fileIDToRecycleName:
-    21300000: grass_0
-    21300002: grass_1
-    21300004: grass_2
-    21300006: grass_3
-    21300008: grass_4
-    21300010: grass_5
-    21300012: grass_6
-    21300014: grass_7
+    21300000: Player_Pulling2_0
+    21300002: Player_Pulling2_1
+    21300004: Player_Pulling2_2
+    21300006: Player_Pulling2_3
+    21300008: Player_Pulling2_4
+    21300010: Player_Pulling2_5
+    21300012: Player_Pulling2_6
+    21300014: Player_Pulling2_7
+    21300016: Player_Pulling2_8
+    21300018: Player_Pulling2_9
+    21300020: Player_Pulling2_10
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -114,161 +117,221 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grass_0
+      name: Player_Pulling2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
+        width: 24
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.6214358, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb98eba81908c6746b91ca944081718e
+      spriteID: d874efc3f4dd4e84d9c79c456ff41bb6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass_1
+      name: Player_Pulling2_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 0
-        width: 48
+        width: 22
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5865579, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ca5eceb57fe7cd4dbd968a040b1fb6d
+      spriteID: 50b3bb72802aeab4bb17d8c8ceaa8c2c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass_2
+      name: Player_Pulling2_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 23
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4633809, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d7c909809f740846b3ea652ef20fcfc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Pulling2_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 48
+        width: 21
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.42534527, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88d891c9db85d4e41b82b17be23efc28
+      spriteID: 9be64c9f2f2a3164ab421fbafad86690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass_3
+      name: Player_Pulling2_4
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 0
-        width: 48
+        width: 19
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.34591997, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2974d9e83ab965c4f8c985bcc9740974
+      spriteID: 49027ee5b681624499b90310d7c34e72
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass_4
+      name: Player_Pulling2_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 19
+        height: 32
+      alignment: 9
+      pivot: {x: 0.36478063, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c2f488020d80fe44b4e7af3ee21e732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Pulling2_6
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 48
+        width: 19
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.3643325, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68adcc4f7b4847f4b9e9884ce42c037b
+      spriteID: e87fe57b07ca3994dab47337ecd5e78f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass_5
+      name: Player_Pulling2_7
       rect:
         serializedVersion: 2
-        x: 240
+        x: 224
         y: 0
-        width: 48
+        width: 19
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.36382413, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf5c0aa377e45a44c9386c4c99f1b274
+      spriteID: c7cc5f8b55a657a41926015bc1c912b8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass_6
+      name: Player_Pulling2_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 19
+        height: 32
+      alignment: 9
+      pivot: {x: 0.36382413, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7d210ee85d3b90459da9414d1ad2bff
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Pulling2_9
       rect:
         serializedVersion: 2
         x: 288
         y: 0
-        width: 48
+        width: 19
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.36047202, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6a04b58a296d544babc324bd8593700
+      spriteID: 6352a4c6748080f418fdab69c4cd81b2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass_7
+      name: Player_Pulling2_10
       rect:
         serializedVersion: 2
-        x: 336
+        x: 320
         y: 0
-        width: 48
+        width: 19
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.38590923, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8f1bcd81c0a93146a83186c722bd054
+      spriteID: 14cbd0c2b3af04d46856c346344672fd
       vertices: []
       indices: 
       edges: []
@@ -276,7 +339,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0124f97b0b4c4bf42a93dcb8fa595dc7
+    spriteID: fb5b137d13d6f274390cbc8e6d5fbbaf
     vertices: []
     indices: 
     edges: []

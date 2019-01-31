@@ -418,9 +418,9 @@ TextureImporter:
       name: SPA_Player_Default_14
       rect:
         serializedVersion: 2
-        x: 0
+        x: 6
         y: 82
-        width: 32
+        width: 22
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -438,9 +438,9 @@ TextureImporter:
       name: SPA_Player_Default_15
       rect:
         serializedVersion: 2
-        x: 38
+        x: 44
         y: 82
-        width: 32
+        width: 22
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

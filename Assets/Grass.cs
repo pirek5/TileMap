@@ -8,14 +8,13 @@ public class Grass : MonoBehaviour {
     [SerializeField] BoxCollider2D rightCollider;
     Animator animator;
 
-    bool left, right, isPlayerMooving;
+    bool leftSideTouched, rightSideTouched, playerIsMooving;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update () {
         GetData();
         AnimateGrass();    
@@ -23,15 +22,15 @@ public class Grass : MonoBehaviour {
 
     private void GetData()
     {
-        left = leftCollider.IsTouchingLayers(LayerMask.GetMask("Player"));
-        right = rightCollider.IsTouchingLayers(LayerMask.GetMask("Player"));
-        isPlayerMooving = Player.xAxisInput != 0;
+        leftSideTouched = leftCollider.IsTouchingLayers(LayerMask.GetMask("Player"));
+        rightSideTouched = rightCollider.IsTouchingLayers(LayerMask.GetMask("Player"));
+        playerIsMooving = Player.xAxisInput != 0;
     }
 
     private void AnimateGrass()
     {
-        animator.SetBool("left", right && isPlayerMooving);
-        animator.SetBool("right", left && isPlayerMooving);
+        animator.SetBool("right", rightSideTouched && playerIsMooving);
+        animator.SetBool("left", leftSideTouched && playerIsMooving);
     }
 
 }

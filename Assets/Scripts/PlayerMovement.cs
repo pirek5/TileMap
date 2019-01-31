@@ -95,16 +95,16 @@ public class PlayerMovement : Player {
 
     private void PullingAnimation(bool isPulling)
     {
-        animator.SetBool("Pulling", isPulling);
+        animator.SetBool("PushingIdle", isPulling);
         if (isPulling)
         {
-            animator.SetBool("PullingIdle", xAxisInput == 0);
-            animator.SetBool("PullingReverse", xAxisInput * transform.localScale.x < 0);
+            animator.SetBool("Pushing", xAxisInput * transform.localScale.x > 0);
+            animator.SetBool("Pulling", xAxisInput * transform.localScale.x < 0);
         }
         else
         {
-            animator.SetBool("PullingIdle", false);
-            animator.SetBool("PullingReverse", false);
+            animator.SetBool("Pushing", false);
+            animator.SetBool("Pulling", false);
         }
 
     }
