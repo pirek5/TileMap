@@ -414,6 +414,8 @@ MonoBehaviour:
     type: 2}
   chooseLevelMenuPrefab: {fileID: 114668798488945316, guid: 2fec7c6ce2aeef14789a5763ffe06598,
     type: 2}
+  tutorialPrefab: {fileID: 114885338615492366, guid: daf499b54fa195549bea3a1742d2890c,
+    type: 2}
   menuParent: {fileID: 0}
 --- !u!114 &114895692595029480
 MonoBehaviour:

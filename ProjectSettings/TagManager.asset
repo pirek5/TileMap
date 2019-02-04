@@ -20,7 +20,7 @@ TagManager:
   - Player
   - Crates
   - Lava
-  - 
+  - Grass
   - 
   - 
   - 
@@ -70,4 +70,7 @@ TagManager:
     locked: 0
   - name: Lava
     uniqueID: 3068177245
+    locked: 0
+  - name: UI
+    uniqueID: 717715829
     locked: 0

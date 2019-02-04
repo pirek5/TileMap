@@ -25,8 +25,7 @@ namespace LevelManagement
         public void OnPlayPressed()
         {
             ChooseLevelMenu.Open();
-            ChooseLevelMenu menu = FindObjectOfType<ChooseLevelMenu>(); //TODO
-            menu.Init();
+            FindObjectOfType<ChooseLevelMenu>().Init(); //TODO
         }
 
         public void OnSettingsPressed()
@@ -39,21 +38,13 @@ namespace LevelManagement
             CreditsMenu.Open();
         }
 
-        //public void OnPlayerNameValueChanged()
+        //public void OnPlayerNameEndEdit()
         //{
         //    if(dataManager != null)
         //    {
-        //        dataManager.PlayerName = inputField.text;
+        //        dataManager.Save();
         //    }
         //}
-
-        public void OnPlayerNameEndEdit()
-        {
-            if(dataManager != null)
-            {
-                dataManager.Save();
-            }
-        }
 
         public override void OnBackPressed()
         {
@@ -65,7 +56,6 @@ namespace LevelManagement
             if(dataManager != null && inputField != null)
             {
                 dataManager.Load();
-                //inputField.text = dataManager.PlayerName;
             }       
         }
 

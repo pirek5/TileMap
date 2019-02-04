@@ -6,7 +6,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerMovement : Player {
 
     //config
-    [SerializeField] private float movingSpeedOnLadder = 1f;
+    [SerializeField] private float movingHorizontalSpeedOnLadder = 1f;
     [SerializeField] private float defaultMovingSpeed = 1f;
     [SerializeField] private float climbingLadderSpeed = 1f;
     [SerializeField] private float jumpingStrenght = 1f;
@@ -39,14 +39,18 @@ public class PlayerMovement : Player {
             Jumping();
             PullingCrate();
             ClimbingLadder();
-            FlipSide();
             SetMovingSpeed();
+            FlipSide();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        AnimatePlayer();
     }
 
     private void MovingHorizontal()
     {
-        animator.SetBool("Running", Mathf.Abs(xAxisInput) > Mathf.Epsilon);  // running animation
         myRigidbody.velocity = new Vector2(xAxisInput * currentMovingSpeed, myRigidbody.velocity.y);
     }
 
@@ -60,10 +64,7 @@ public class PlayerMovement : Player {
 
     private void ClimbingLadder()
     {
-        animator.SetBool("OnLadder", isTouchingLadder && !isTouchingGround);
-        animator.SetBool("Climbing", isTouchingLadder && (yAxisInput != 0 || xAxisInput != 0));
-
-        if (isTouchingLadder && !isTouchingGround)
+        if (isTouchingLadder)
         {
             myRigidbody.gravityScale = 0;
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, yAxisInput * climbingLadderSpeed);
@@ -79,7 +80,6 @@ public class PlayerMovement : Player {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale, pullingRange, crateMask);
         if(hit.collider != null && CrossPlatformInputManager.GetButton("Fire1"))
         {
-            PullingAnimation(true);
             isPullingCrate = true;
             crateToPull = hit.collider.gameObject;
             crateToPull.GetComponent<FixedJoint2D>().enabled = true;
@@ -87,26 +87,21 @@ public class PlayerMovement : Player {
         }
         else if(CrossPlatformInputManager.GetButtonUp("Fire1"))
         {
-            PullingAnimation(false);
             isPullingCrate = false;
             if (crateToPull)crateToPull.GetComponent<FixedJoint2D>().enabled = false;
         }
     }
 
-    private void PullingAnimation(bool isPulling)
+    private void SetMovingSpeed()
     {
-        animator.SetBool("PushingIdle", isPulling);
-        if (isPulling)
+        if (isTouchingLadder && !isTouchingGround)
         {
-            animator.SetBool("Pushing", xAxisInput * transform.localScale.x > 0);
-            animator.SetBool("Pulling", xAxisInput * transform.localScale.x < 0);
+            currentMovingSpeed = movingHorizontalSpeedOnLadder;
         }
         else
         {
-            animator.SetBool("Pushing", false);
-            animator.SetBool("Pulling", false);
+            currentMovingSpeed = defaultMovingSpeed;
         }
-
     }
 
     private void FlipSide()
@@ -121,16 +116,25 @@ public class PlayerMovement : Player {
         }
     }
 
-    private void SetMovingSpeed()
+    private void AnimatePlayer()
     {
-        if(isTouchingLadder && !isTouchingGround)
+        animator.SetBool("Running", Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon);
+        animator.SetBool("OnLadder", isTouchingLadder && !isTouchingGround);
+        animator.SetBool("Climbing", isTouchingLadder && !isTouchingGround && (yAxisInput != 0 || xAxisInput != 0));
+
+        animator.SetBool("PushingIdle", isPullingCrate);
+        if (isPullingCrate)
         {
-            currentMovingSpeed = movingSpeedOnLadder;
+            animator.SetBool("Pushing", xAxisInput * transform.localScale.x > 0);
+            animator.SetBool("Pulling", xAxisInput * transform.localScale.x < 0);
         }
         else
         {
-            currentMovingSpeed = defaultMovingSpeed;
+            animator.SetBool("Pushing", false);
+            animator.SetBool("Pulling", false);
         }
     }
+
+
 
 }

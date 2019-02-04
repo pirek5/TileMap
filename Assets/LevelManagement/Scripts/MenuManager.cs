@@ -15,6 +15,7 @@ namespace LevelManagement
         [SerializeField] private WinScreen winScreenPrefab;
         [SerializeField] private LoseScreen loseScreenPrefab;
         [SerializeField] private ChooseLevelMenu chooseLevelMenuPrefab;
+        [SerializeField] private Tutorial tutorialPrefab;
 
         [SerializeField] private Transform menuParent;
 

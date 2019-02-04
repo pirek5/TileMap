@@ -42,6 +42,12 @@ namespace LevelManagement
             GameMenu.Open();
         }
 
+        public void OnTutorialPressed()
+        {
+            Tutorial.Open();
+            FindObjectOfType<Tutorial>().Init(); //TODO
+        }
+
         public override void OnBackPressed()
         {
             base.OnBackPressed();
