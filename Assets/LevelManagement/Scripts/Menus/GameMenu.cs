@@ -13,16 +13,15 @@ namespace LevelManagement
             if (CrossPlatformInputManager.GetButtonDown("Cancel"))
             {
                 OnPausePressed();
+
             }
         }
 
         public void OnPausePressed()
         {
             Time.timeScale = 0;
-
             PauseMenu.Open();
         }
-
     }
 }
 
