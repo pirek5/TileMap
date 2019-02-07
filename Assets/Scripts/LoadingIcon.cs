@@ -58,6 +58,7 @@ public class LoadingIcon : MonoBehaviour { //TODO kiepsko wyglądający kod
             }
             yield return new WaitForSeconds(period);
         }
+
         if (LevelLoader.instance.CheckIfMainMenu())
         {
             gameObject.SetActive(false);

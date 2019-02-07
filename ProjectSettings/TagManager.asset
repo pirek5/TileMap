@@ -44,6 +44,12 @@ TagManager:
   - name: Background
     uniqueID: 1712021159
     locked: 0
+  - name: Background Lights
+    uniqueID: 2761760075
+    locked: 0
+  - name: Background Decals
+    uniqueID: 682472397
+    locked: 0
   - name: Ladders
     uniqueID: 1067677871
     locked: 0
@@ -59,7 +65,7 @@ TagManager:
   - name: Water
     uniqueID: 3522748951
     locked: 0
-  - name: Decals Foreground
+  - name: Foreground Decals
     uniqueID: 3559703549
     locked: 0
   - name: LavaLight2

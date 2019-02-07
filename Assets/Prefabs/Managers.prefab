@@ -24,12 +24,12 @@ GameObject:
   - component: {fileID: 114653600079184902}
   - component: {fileID: 114324682300176294}
   m_Layer: 0
-  m_Name: Loading Icon
+  m_Name: Loading Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1476598174807862
 GameObject:
   m_ObjectHideFlags: 1

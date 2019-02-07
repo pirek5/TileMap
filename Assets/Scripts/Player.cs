@@ -11,7 +11,7 @@ public class Player : MonoBehaviour { // base class - collect input and informat
     static public bool IsActive { get { return isActive; }  set { isActive = value; } }
     public static float xAxisInput, yAxisInput;
     protected bool isTouchingGround;
-    protected bool isPullingCrate;
+    protected bool isHoldingCrate;
     protected bool isTouchingLadder;
     protected bool isTouchingLava;
     protected bool isTouchingWater;

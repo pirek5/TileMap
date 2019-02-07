@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Grass : MonoBehaviour {
 
-    [SerializeField] GrassCollider leftCollider;
-    [SerializeField] GrassCollider rightCollider;
+    //references set in editor
+    [SerializeField] private GrassCollider leftCollider;
+    [SerializeField] private GrassCollider rightCollider;
+
+    //cached commponents
     Animator animator;
     Collider2D collisionCollider;
 
@@ -20,6 +23,7 @@ public class Grass : MonoBehaviour {
     void Update () {
         GetData();
         AnimateGrass();    
+
     }
 
     private void GetData()
@@ -51,35 +55,4 @@ public class Grass : MonoBehaviour {
         animator.SetBool("right", rightSideTouched && collisionIsMoving);
         animator.SetBool("left", leftSideTouched && collisionIsMoving);
     }
-
-    //[SerializeField] BoxCollider2D leftCollider;
-    //[SerializeField] BoxCollider2D rightCollider;
-    //Animator animator;
-    //Collider2D collisionCollider;
-
-    //bool leftSideTouched, rightSideTouched, playerIsMooving;
-
-    //private void Awake()
-    //{
-    //    animator = GetComponent<Animator>();
-    //}
-
-    //void Update()
-    //{
-    //    GetData();
-    //    AnimateGrass();
-    //}
-
-    //private void GetData()
-    //{
-    //    leftSideTouched = leftCollider.IsTouchingLayers(LayerMask.GetMask("Player"));
-    //    rightSideTouched = rightCollider.IsTouchingLayers(LayerMask.GetMask("Player"));
-    //    playerIsMooving = Player.xAxisInput != 0;
-    //}
-
-    //private void AnimateGrass()
-    //{
-    //    animator.SetBool("right", rightSideTouched && playerIsMooving);
-    //    animator.SetBool("left", leftSideTouched && playerIsMooving);
-    //}
 }
