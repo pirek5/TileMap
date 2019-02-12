@@ -25,11 +25,6 @@ public class LevelScoreManager : MonoBehaviour {
         }
     }
 
-    public void CoinPickedUp()
-    {
-        coins++;
-    }
-
     public void UpdateHeartsAmount(int updatedHearts)
     {
         this.hearts = updatedHearts;
@@ -44,6 +39,7 @@ public class LevelScoreManager : MonoBehaviour {
     private int CalculateScore() // TODO usunąć magiczne liczby
     {
         int maxScore = maxCoins + 3; // 3 - max lives
+        coins = maxCoins - FindObjectsOfType<Coin>().Length;
         int score = coins + hearts;
         float ratio = (float)score / maxScore;
 

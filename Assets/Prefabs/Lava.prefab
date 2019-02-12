@@ -11,6 +11,23 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1665471697431902}
   m_IsPrefabAsset: 1
+--- !u!1 &1077217145007858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4987188341188790}
+  - component: {fileID: 114827698995485004}
+  - component: {fileID: 61933659285922658}
+  m_Layer: 14
+  m_Name: LavaFXController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1091279528880858
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,6 +95,7 @@ Transform:
   m_Children:
   - {fileID: 4931750208816970}
   - {fileID: 4951570848039610}
+  - {fileID: 4987188341188790}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -107,6 +125,19 @@ Transform:
   m_Father: {fileID: 4573523219062430}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4987188341188790
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1077217145007858}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.5, y: -4.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4573523219062430}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50790703901815334
 Rigidbody2D:
   serializedVersion: 4
@@ -127,6 +158,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &61933659285922658
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1077217145007858}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 69, y: 1}
+  m_EdgeRadius: 0
 --- !u!66 &66177436244338892
 CompositeCollider2D:
   m_ObjectHideFlags: 1
@@ -146,14 +202,14 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 2113883505016833506}
     m_ColliderPaths:
-    - - X: -440000000
+    - - X: 250000000
+        Y: -230000000
+      - X: 250000000
+        Y: -41250000
+      - X: -440000000
         Y: -41250000
       - X: -440000000
         Y: -230000000
-      - X: 250000000
-        Y: -230000000
-      - X: 250000000
-        Y: -41250000
   m_CompositePaths:
     m_Paths:
     - - {x: 25, y: -4.125}
@@ -173,6 +229,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaSpeed: 0
+--- !u!114 &114827698995485004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1077217145007858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e5ab0cbbd3daa48bcb97498005f637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftEdge: {x: -44, y: -4.1}
+  rightEdge: {x: 25, y: -4.1}
+  detectorPrefab: {fileID: 1418359347349534, guid: fda0eb5f442a35e4dad81191f63d8318,
+    type: 2}
+  tags:
+  - SteamFG
+  - SteamBG
+  detectorsPerUnit: 8
 --- !u!19719996 &2113883505016833506
 TilemapCollider2D:
   m_ObjectHideFlags: 1
@@ -219,7 +294,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1226790051
-  m_SortingLayer: 10
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -261,7 +336,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -759720253
-  m_SortingLayer: 8
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -303,7 +378,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -759720253
-  m_SortingLayer: 8
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -618,15 +693,6 @@ Tilemap:
       m_TileFlags: 0
       m_ColliderType: 0
   - first: {x: -11, y: -4, z: 0}
-    second:
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 0
-      m_ColliderType: 0
-  - first: {x: -10, y: -4, z: 0}
     second:
       m_TileIndex: 0
       m_TileSpriteIndex: 0
@@ -1248,15 +1314,6 @@ Tilemap:
       m_AnimationSpeed: 8
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
-  - first: {x: -10, y: -4, z: 0}
-    second:
-      m_AnimatedSprites:
-      - {fileID: 21300000, guid: 3bd37857e56661e4ca8b5e6b94672c23, type: 3}
-      - {fileID: 21300002, guid: 3bd37857e56661e4ca8b5e6b94672c23, type: 3}
-      - {fileID: 21300004, guid: 3bd37857e56661e4ca8b5e6b94672c23, type: 3}
-      m_AnimationSpeed: 8
-      m_AnimationTimeOffset: 0
-      m_IsLooping: 1
   - first: {x: -9, y: -4, z: 0}
     second:
       m_AnimatedSprites:
@@ -1564,13 +1621,13 @@ Tilemap:
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
-  - m_RefCount: 69
+  - m_RefCount: 68
     m_Data: {fileID: 11400000, guid: c2831178ecba7ac45a74e1093746f3b1, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 69
+  - m_RefCount: 68
     m_Data: {fileID: 21300004, guid: 3bd37857e56661e4ca8b5e6b94672c23, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 69
+  - m_RefCount: 68
     m_Data:
       e00: 1
       e01: 0
@@ -1589,12 +1646,12 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 69
+  - m_RefCount: 68
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 0.07058824}
-  m_Origin: {x: -44, y: -4, z: 0}
-  m_Size: {x: 69, y: 4, z: 1}
+  m_Origin: {x: -44, y: -5, z: 0}
+  m_Size: {x: 69, y: 5, z: 1}
   m_TileAnchor: {x: 0.5, y: -0.29, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:

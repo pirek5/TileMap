@@ -8,7 +8,6 @@ public class Coin : MonoBehaviour {
     {
         if (collision.GetComponent<PlayerMovement>())
         {
-            LevelScoreManager.Instance.CoinPickedUp();
             Destroy(gameObject);
         }
     }

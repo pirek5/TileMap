@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SteamBG
+  - SteamFG
+  - FireFG
+  - FireBG
   layers:
   - Default
   - TransparentFX
@@ -21,7 +25,7 @@ TagManager:
   - Crates
   - Lava
   - Grass
-  - 
+  - DeepWater
   - 
   - 
   - 

@@ -101,15 +101,18 @@ namespace LevelManagement.Data
             int currentLevelStars = LevelScoreManager.Instance.stars;
             int nextLevelStars = 0;
             int oldCurrentLevelStars = numberOfStarsInEachLevel[SceneManager.GetActiveScene().buildIndex];
-            int oldNextLevelStars = numberOfStarsInEachLevel[SceneManager.GetActiveScene().buildIndex+1];
-
             if (currentLevelStars > oldCurrentLevelStars)
             {
-               numberOfStarsInEachLevel[SceneManager.GetActiveScene().buildIndex] = currentLevelStars;
+                numberOfStarsInEachLevel[SceneManager.GetActiveScene().buildIndex] = currentLevelStars;
             }
-            if (nextLevelStars > oldNextLevelStars)
+
+            if (SceneManager.sceneCountInBuildSettings > SceneManager.GetActiveScene().buildIndex + 1) // last level case
             {
-               numberOfStarsInEachLevel[SceneManager.GetActiveScene().buildIndex + 1] = nextLevelStars;
+                int oldNextLevelStars = numberOfStarsInEachLevel[SceneManager.GetActiveScene().buildIndex + 1];
+                if (nextLevelStars > oldNextLevelStars)
+                {
+                    numberOfStarsInEachLevel[SceneManager.GetActiveScene().buildIndex + 1] = nextLevelStars;
+                }
             }
             Save();
         }

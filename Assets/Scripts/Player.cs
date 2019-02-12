@@ -10,12 +10,7 @@ public class Player : MonoBehaviour { // base class - collect input and informat
     static protected bool isActive;
     static public bool IsActive { get { return isActive; }  set { isActive = value; } }
     public static float xAxisInput, yAxisInput;
-    protected bool isTouchingGround;
-    protected bool isHoldingCrate;
-    protected bool isTouchingLadder;
-    protected bool isTouchingLava;
-    protected bool isTouchingWater;
-    protected bool isTouchingEnemy;
+    protected bool isTouchingGround, isTouchingEnemy, isHeadTouchingLava, isTouchingWater, isFeetTouchingLava, isTouchingLadder, isHoldingCrate;
 
     //cached components 
     protected Animator animator;
@@ -37,8 +32,9 @@ public class Player : MonoBehaviour { // base class - collect input and informat
     {
         isTouchingGround = IsPlayerTouching(feetCollider, "Ground") || IsPlayerTouching(feetCollider, "Crates");
         isTouchingLadder = IsPlayerTouching(feetCollider, "Ladder");
-        isTouchingLava = IsPlayerTouching(feetCollider, "Lava");
-        isTouchingWater = IsPlayerTouching(headCollider, "Water");
+        isFeetTouchingLava = IsPlayerTouching(feetCollider, "Lava");
+        isHeadTouchingLava = IsPlayerTouching(headCollider, "Lava");
+        isTouchingWater = IsPlayerTouching(headCollider, "DeepWater");
         isTouchingEnemy = IsPlayerTouching(bodyCollider, "Hazards");
         xAxisInput = CrossPlatformInputManager.GetAxis("Horizontal");
         yAxisInput = CrossPlatformInputManager.GetAxis("Vertical");

@@ -15,11 +15,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 1.unity
     guid: e6952d340bc5e4144855161430d0dce7
   - enabled: 1
-    path: Assets/Scenes/Level 2.unity
-    guid: 90672930e84b43d4ca0dba16a1f329f4
-  - enabled: 1
     path: Assets/Scenes/Sandbox.unity
     guid: bc4270ded1eee57458bd8cca805c44e7
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 90672930e84b43d4ca0dba16a1f329f4
   - enabled: 1
     path: Assets/Scenes/Template.unity
     guid: 2548c0818a68afc459e670546440bf73

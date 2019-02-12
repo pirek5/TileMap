@@ -10,7 +10,6 @@ public class PlayerHealth : Player
 
     //config
     [SerializeField] private float verticalAfterHitBodyThrow = 1f;
-    [SerializeField] private float horizontalAfterHitBodyThrow = 1f;
     [SerializeField] private float throwPeriod = 1f;
     [SerializeField] private float endGameDelay = 1f;
     [SerializeField] private float drowningTime = 1f;
@@ -27,8 +26,8 @@ public class PlayerHealth : Player
         {
             base.Update();
             if (isTouchingEnemy && !immunity) EnemyTouched();
-            if (isTouchingLava && !immunity) LavaTouched();
-            if (isTouchingWater) WaterTouched();
+            if (isFeetTouchingLava && !immunity) LavaTouched();
+            if (isTouchingWater || isHeadTouchingLava) Drowning();
         }
 
         if (zeroVelocity) // prevents weird behavior after death or during drowning
@@ -83,9 +82,10 @@ public class PlayerHealth : Player
         immunity = false;
     }
 
-    private void WaterTouched()
+    private void Drowning()
     {
         LoseHealth(lives);
+        zeroVelocity = true;
         isActive = false;
         myRigidbody.gravityScale = 0.3f;
         animator.SetTrigger("Drowning");
