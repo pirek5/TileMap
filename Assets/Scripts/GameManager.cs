@@ -33,10 +33,12 @@ public class GameManager : MonoBehaviour // TODO zmienic z magicznych liczba ser
     {
         if (Player.IsActive)
         {
+            Cursor.visible = true;
             WinScreen.Open();
             LevelScoreManager.Instance.UpdateLevelScoreDisplay();
             StopPlayerMovement();
             StopEnemiesMovement();
+            StopLava();
             DataManager.instance.CompareDataAfterLevel();
         }
     }
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour // TODO zmienic z magicznych liczba ser
     public void LevelLose()
     {
         StopEnemiesMovement();
+        Cursor.visible = true;
         LoseScreen.Open();
     }
 
@@ -62,6 +65,24 @@ public class GameManager : MonoBehaviour // TODO zmienic z magicznych liczba ser
         {
             enemy.GetComponent<Animator>().SetTrigger("End");
             enemy.Stop();
+        }
+    }
+
+    private void StopLava()
+    {
+        var lava = FindObjectOfType<Lava>();
+        if (lava)
+        {
+            lava.isFloating = false;
+        }
+    }
+
+    public void StartLava()
+    {
+        var lava = FindObjectOfType<Lava>();
+        if (lava)
+        {
+            lava.isFloating = true;
         }
     }
 }

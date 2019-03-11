@@ -84,6 +84,7 @@ namespace LevelManagement
         public void LoadMainMenuLevel()
         {
             LoadLevel(mainMenuIndex);
+            Cursor.visible = true;
         }
 
         IEnumerator LoadLevelAsync(int level)

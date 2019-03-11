@@ -26,14 +26,17 @@ public class PlayerMovement : Player {
         Physics2D.queriesStartInColliders = false;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale * pullingRange);
-    }
-
     protected override void Update () {
         base.Update();
+        if (isActive)
+        {
+            FlipSide();
+            AnimatePlayer();
+        }
+    }
+
+    private void FixedUpdate()
+    {
         if (isActive)
         {
             MovingHorizontal();
@@ -41,13 +44,7 @@ public class PlayerMovement : Player {
             PullingCrate();
             ClimbingLadder();
             SetMovingSpeed();
-            FlipSide();
         }
-    }
-
-    private void FixedUpdate()
-    {
-        AnimatePlayer();
     }
 
     private void MovingHorizontal()
@@ -57,10 +54,12 @@ public class PlayerMovement : Player {
 
     private void Jumping()
     {
-        if (CrossPlatformInputManager.GetButtonDown("Jump") && isTouchingGround && !isHoldingCrate)
+        if (jumpPressed && isTouchingGround && !isHoldingCrate)
         {
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpingStrenght);
+            jumpPressed = false;
         }
+        
     }
 
     private void ClimbingLadder()
@@ -79,7 +78,7 @@ public class PlayerMovement : Player {
     private void PullingCrate()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale, pullingRange, crateMask);
-        if(hit.collider != null && CrossPlatformInputManager.GetButton("Fire1"))
+        if(hit.collider != null && shiftPressed && isTouchingGround)
         {
             isHoldingCrate = true;
             crateToPull = hit.collider.gameObject;
@@ -87,7 +86,7 @@ public class PlayerMovement : Player {
             crateToPull.GetComponent<FixedJoint2D>().connectedBody = myRigidbody;
             crateToPull.GetComponent<Crate>().isMoveable = true;
         }
-        else if(CrossPlatformInputManager.GetButtonUp("Fire1"))
+        else if(!shiftPressed)
         {
             isHoldingCrate = false;
             if (crateToPull)
@@ -106,6 +105,7 @@ public class PlayerMovement : Player {
         }
         else if (isTouchingLadder && !isTouchingGround)
         {
+              
             currentMovingSpeed = movingHorizontalSpeedOnLadder;
         }
         else

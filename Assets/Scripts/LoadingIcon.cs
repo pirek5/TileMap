@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using LevelManagement;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class LoadingIcon : MonoBehaviour { //TODO kiepsko wyglądający kod 
+public class LoadingIcon : MonoBehaviour { //TODO refactor
 
     public static LoadingIcon instance;
 
@@ -59,25 +59,26 @@ public class LoadingIcon : MonoBehaviour { //TODO kiepsko wyglądający kod
             yield return new WaitForSeconds(period);
         }
 
-        if (LevelLoader.instance.CheckIfMainMenu())
-        {
-            gameObject.SetActive(false);
-            StopAllCoroutines();
-            LevelLoader.levelIsReady = false;
-        }
+        //if (LevelLoader.instance.CheckIfMainMenu())
+        //{
+        //    gameObject.SetActive(false);
+        //    StopAllCoroutines();
+        //    LevelLoader.levelIsReady = false;
+        //}
 
         loadingText.gameObject.SetActive(false);
         pressAnyKeyText.gameObject.SetActive(true);
         bool isStartPressed = false;
         while (!isStartPressed)  // waiting to press any key
         {
-            isStartPressed = Input.anyKeyDown;
+            isStartPressed = Input.anyKeyDown || LevelLoader.instance.CheckIfMainMenu();
             yield return null;
         }
         LevelLoader.levelIsReady = false;
         loadingText.gameObject.SetActive(true);
         isStartPressed = false;
         gameObject.SetActive(false);
+        GameManager.Instance.StartLava();
     }
 
 

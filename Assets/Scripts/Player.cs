@@ -10,7 +10,8 @@ public class Player : MonoBehaviour { // base class - collect input and informat
     static protected bool isActive;
     static public bool IsActive { get { return isActive; }  set { isActive = value; } }
     public static float xAxisInput, yAxisInput;
-    protected bool isTouchingGround, isTouchingEnemy, isHeadTouchingLava, isTouchingWater, isFeetTouchingLava, isTouchingLadder, isHoldingCrate;
+    protected bool isTouchingGround, isTouchingEnemy, isHeadTouchingLava, isTouchingWater, isTouchingLava, isTouchingLadder, isHoldingCrate;
+    protected bool jumpPressed, shiftPressed;
 
     //cached components 
     protected Animator animator;
@@ -30,15 +31,23 @@ public class Player : MonoBehaviour { // base class - collect input and informat
 
     protected virtual void Update ()
     {
+        //State
         isTouchingGround = IsPlayerTouching(feetCollider, "Ground") || IsPlayerTouching(feetCollider, "Crates");
         isTouchingLadder = IsPlayerTouching(feetCollider, "Ladder");
-        isFeetTouchingLava = IsPlayerTouching(feetCollider, "Lava");
+        isTouchingLava = IsPlayerTouching(feetCollider, "Lava") || IsPlayerTouching(bodyCollider, "Lava");
         isHeadTouchingLava = IsPlayerTouching(headCollider, "Lava");
         isTouchingWater = IsPlayerTouching(headCollider, "DeepWater");
         isTouchingEnemy = IsPlayerTouching(bodyCollider, "Hazards");
+
+        //Input
         xAxisInput = CrossPlatformInputManager.GetAxis("Horizontal");
-        yAxisInput = CrossPlatformInputManager.GetAxis("Vertical");
-	}
+        yAxisInput = CrossPlatformInputManager.GetAxisRaw("Vertical");
+        if (CrossPlatformInputManager.GetButtonDown("Jump"))
+        {
+            jumpPressed = CrossPlatformInputManager.GetButtonDown("Jump");
+        }
+        shiftPressed = CrossPlatformInputManager.GetButton("Fire1");
+    }
 
     protected bool IsPlayerTouching(Collider2D collider, string thing)
     {

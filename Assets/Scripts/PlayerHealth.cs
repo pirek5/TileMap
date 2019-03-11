@@ -25,9 +25,10 @@ public class PlayerHealth : Player
         if (isActive)
         {
             base.Update();
+            if (isTouchingWater) Drowning();
+            if (isHeadTouchingLava) InstantDeath();
+            if (isTouchingLava && !immunity) LavaTouched();
             if (isTouchingEnemy && !immunity) EnemyTouched();
-            if (isFeetTouchingLava && !immunity) LavaTouched();
-            if (isTouchingWater || isHeadTouchingLava) Drowning();
         }
 
         if (zeroVelocity) // prevents weird behavior after death or during drowning
@@ -110,6 +111,14 @@ public class PlayerHealth : Player
     {
         LoseHealth(1);
         CheckIfDead();
+    }
+
+    private void InstantDeath()
+    {
+        LoseHealth(lives);
+        isActive = false;
+        zeroVelocity = true;
+        DeathSequence();
     }
 
     private void CheckIfDead()

@@ -18,13 +18,17 @@ public class EnemyMovement : MonoBehaviour {
     }
 	
 	void Update () {
-        if (stopped) { return; }
-        myRigidbody.velocity = new Vector2(movementSpeed, myRigidbody.velocity.y);
         if (IsTimeToTurn())
         {
             Turn();
         }
 	}
+
+    private void FixedUpdate()
+    {
+        if (stopped) { return; }
+        myRigidbody.velocity = new Vector2(movementSpeed, myRigidbody.velocity.y);
+    }
 
     private void Turn()
     {
@@ -43,7 +47,7 @@ public class EnemyMovement : MonoBehaviour {
         RaycastHit2D wall = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale, wallDetectRange, wallMask);
         Vector2 raycastStartPos = new Vector2(transform.position.x + floorDetectOffset * transform.localScale.x, transform.position.y);
         RaycastHit2D floor = Physics2D.Raycast(raycastStartPos, new Vector2(1f,-1f) * transform.localScale, floorDetectRange);
-        //RaycastHit2D floor = Physics2D.Raycast(transform.position, new Vector2(1, -1) * transform.localScale, floorDetectRange);
+
         if (wall || !floor) //turn if wall or end of floor detected
         {
             return true;
@@ -53,13 +57,4 @@ public class EnemyMovement : MonoBehaviour {
             return false;
         }
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Vector2 raycastStartPos = new Vector2(transform.position.x + floorDetectOffset * transform.localScale.x, transform.position.y);
-        Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale * wallDetectRange);
-        Gizmos.DrawLine(raycastStartPos, (Vector2)transform.position+(new Vector2(1f, -1f) * transform.localScale) * floorDetectRange);
-    }
-
 }

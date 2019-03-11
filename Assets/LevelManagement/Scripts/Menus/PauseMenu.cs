@@ -17,6 +17,7 @@ namespace LevelManagement
 
         public void OnResumePressed()
         {
+            Cursor.visible = false;
             Time.timeScale = 1;
             base.OnBackPressed();
         }
@@ -25,6 +26,7 @@ namespace LevelManagement
         {
             if (GameManager.Instance != null)
             {
+                Cursor.visible = false;
                 Time.timeScale = 1;
                 LevelLoader.instance.ReloadLevel();
                 base.OnBackPressed();

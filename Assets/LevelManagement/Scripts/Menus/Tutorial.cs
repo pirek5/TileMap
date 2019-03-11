@@ -65,6 +65,10 @@ namespace LevelManagement
                 if(i == currentPage)
                 {
                     pages[i].SetActive(true);
+                    if(currentPage == 4)
+                    {
+                        Cursor.visible = true;
+                    }
                 }
             }
         }
@@ -87,16 +91,19 @@ namespace LevelManagement
             }
             base.OnBackPressed();
             base.OnBackPressed();
+            Cursor.visible = true;
         }
 
         private void BackToMainMenuConfirmationWindow()
         {
             Time.timeScale = Convert.ToInt32(confirmationWindow.activeSelf);
             confirmationWindow.SetActive(!confirmationWindow.activeSelf);
+            Cursor.visible = !Cursor.visible;
         }
 
         public void OnYesPressed()
         {
+            Cursor.visible = true;
             Time.timeScale = 1;
             confirmationWindow.SetActive(false);
             OnBackPressed();
@@ -104,6 +111,7 @@ namespace LevelManagement
 
         public void OnNoPressed()
         {
+            Cursor.visible = false;
             Time.timeScale = 1;
             confirmationWindow.SetActive(false);
         }

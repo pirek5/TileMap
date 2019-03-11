@@ -8,6 +8,7 @@ namespace LevelManagement
     {
         public void OnRestartPressed()
         {
+            Cursor.visible = false;
             base.OnBackPressed();
             LevelLoader.instance.ReloadLevel();
         }
